@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sincere Apology</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0f0f, #1a1a1a);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: transform 0.3s, opacity 0.3s;
+            mix-blend-mode: difference;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .apology-card {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: cardEntrance 1s ease 0.3s forwards;
+        }
+
+        .interactive-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .memory-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes cardEntrance {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--glass);
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .apology-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="theme-toggle">🌓</div>
+
+    <div class="container">
+        <section class="hero">
+            <h1 style="font-size: 4rem; margin-bottom: 1rem;">😔 I'm Truly Sorry</h1>
+            <p style="color: #888; font-size: 1.2rem;">This isn't who I want to be</p>
+        </section>
+
+        <div class="apology-card">
+            <h2 style="margin-bottom: 2rem;">Sorry Sadhvi,</h2>
+            <p style="line-height: 1.8; color: #ccc;">
+                I want to sincerely apologize for my careless mistake. Sending that reel was completely unintentional and I deeply regret any discomfort it caused you. I'm committed to being more mindful in the future.
+            </p>
+            
+            <div style="margin: 2rem 0;">
+                <button class="interactive-button" id="forgiveBtn">
+                    🙏 Please Forgive Me
+                </button>
+            </div>
+
+         
+
+            <div style="margin-top: 3rem; text-align: center;">
+                <p style="color: #666;">With heartfelt regret,</p>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">Arun Anand</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Interactive button effect
+        const button = document.getElementById('forgiveBtn');
+        button.addEventListener('click', () => {
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Add confetti effect here
+            alert("Thank you for your understanding 💖 I value our friendship immensely.");
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            themeToggle.textContent = document.body.classList.contains('light-theme') ? '🌞' : '🌓';
+        });
+    </script>
+</body>
+</html>
